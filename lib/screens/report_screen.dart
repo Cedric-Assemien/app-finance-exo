@@ -33,14 +33,30 @@ class _ReportScreenState extends State<ReportScreen> {
       backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
         centerTitle: true,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {},
+            ),
+          ),
+        ),
         title: const Text('Report',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade200,
         elevation: 0,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.more_horiz),
-            onPressed: () {},
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: IconButton(
+                icon: const Icon(Icons.more_horiz),
+                onPressed: () {},
+              ),
+            ),
           ),
         ],
       ),

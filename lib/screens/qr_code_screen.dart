@@ -12,7 +12,7 @@ class QRCodeBottomSheet extends StatelessWidget {
       isScrollControlled: true, // Pour permettre de prendre 90% de l'écran
       backgroundColor: Colors.transparent,
       builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.9, // 90% de l'écran
+        initialChildSize: 0.8, // 90% de l'écran
         minChildSize: 0.5,
         maxChildSize: 0.95,
         builder: (_, scrollController) => const QRCodeBottomSheet(),
@@ -23,8 +23,8 @@ class QRCodeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
@@ -38,9 +38,12 @@ class QRCodeBottomSheet extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             child: Row(
               children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pop(context),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => Navigator.pop(context),
+                  ),
                 ),
                 const Expanded(
                   child: Center(
@@ -53,11 +56,12 @@ class QRCodeBottomSheet extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 48), // Espace pour équilibrer le bouton retour
+                const SizedBox(
+                    width: 48), // Espace pour équilibrer le bouton retour
               ],
             ),
           ),
-          
+
           // Conteneur principal
           Expanded(
             child: Padding(
@@ -66,80 +70,92 @@ class QRCodeBottomSheet extends StatelessWidget {
                 children: [
                   // QR Code
                   Container(
-                    width: 250,
-                    height: 250,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    padding: EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withAlpha(150),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
                     ),
-                    child: Stack(
-                      alignment: Alignment.center,
+                    child: Column(
                       children: [
-                        QrImageView(
-                          data: 'https://www.iit.ci/',
-                          version: QrVersions.auto,
-                          size: 220,
-                          backgroundColor: Colors.white,
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            QrImageView(
+                              data: 'https://www.iit.ci/',
+                              version: QrVersions.auto,
+                              size: 310,
+                              backgroundColor: Colors.white,
+                            ),
+                            // Logo jaune au centre du QR
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFFFD700), // Jaune
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.water,
+                                color: Colors.black,
+                                size: 30,
+                              ),
+                            ),
+                          ],
                         ),
-                        // Logo jaune au centre du QR
+                        const SizedBox(height: 20),
                         Container(
-                          width: 50,
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFFFD700), // Jaune
-                            shape: BoxShape.circle,
+                          width: 220,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          child: const Icon(
-                            Icons.water,
-                            color: Colors.black,
-                            size: 30,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.person, size: 18),
+                              const SizedBox(width: 8),
+                              Text('Devano Mahendra',
+                                  style: AppStyles.bodyLarge),
+                            ],
                           ),
                         ),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
-                  
+
                   const SizedBox(height: 30),
-                  
+
                   // Nom d'utilisateur
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.person, size: 18),
-                      const SizedBox(width: 8),
-                      Text('Devano Mahendra', style: AppStyles.bodyLarge),
-                    ],
+
+                  SizedBox(
+                    height: 20,
                   ),
-                  
-                  const SizedBox(height: 20),
-                  
                   // Texte explicatif
                   Text(
                     'Experience fast, secure, and hassle-free transactions with FirePay. Scan QR codes and complete payments effortlessly!',
-                    style: AppStyles.bodyMedium.copyWith(color: Colors.grey[600]),
+                    style:
+                        AppStyles.bodyMedium.copyWith(color: Colors.grey[600]),
                     textAlign: TextAlign.center,
                   ),
-                  
+
                   const Spacer(),
-                  
+
                   // Bouton de partage
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.share, color: Colors.white),
-                      label: const Text('Share Code', style: TextStyle(color: Colors.white)),
+                      label: const Text('Share Code',
+                          style: TextStyle(color: Colors.white)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(28)),
                       ),
                     ),
                   ),
@@ -164,7 +180,7 @@ class QRCodeScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       QRCodeBottomSheet.show(context);
     });
-    
+
     // Retourne un écran vide derrière le bottom sheet
     return Scaffold(
       backgroundColor: Colors.white,

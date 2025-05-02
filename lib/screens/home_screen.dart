@@ -321,10 +321,7 @@ class HomeScreen extends StatelessWidget {
                                 flex: 20,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                    ),
+                                    borderRadius: BorderRadius.circular(10),
                                     color: Colors.grey[300],
                                   ),
                                 ),
@@ -332,19 +329,31 @@ class HomeScreen extends StatelessWidget {
                               Expanded(
                                 flex: 15,
                                 child: Container(
-                                  color: Colors.purple,
+                                  decoration: BoxDecoration(
+                                      color: Colors.purpleAccent,
+                                      borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(5),
+                                          bottomRight: Radius.circular(5))),
                                 ),
                               ),
                               Expanded(
                                 flex: 20,
                                 child: Container(
-                                  color: Colors.green,
+                                  decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(5),
+                                          bottomRight: Radius.circular(5))),
                                 ),
                               ),
                               Expanded(
                                 flex: 25,
                                 child: Container(
-                                  color: Colors.amber,
+                                  decoration: BoxDecoration(
+                                      color: Colors.amber,
+                                      borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(5),
+                                          bottomRight: Radius.circular(5))),
                                 ),
                               ),
                               Expanded(

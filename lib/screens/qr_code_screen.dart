@@ -34,33 +34,63 @@ class QRCodeBottomSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Barre supérieure avec titre et bouton de retour
-          Padding(
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 100,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            child: Row(
+            child: Stack(
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ),
-                const Expanded(
-                  child: Center(
-                    child: Text(
-                      'Scan QR Code',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () => Navigator.pop(context),
                     ),
                   ),
                 ),
-                const SizedBox(
-                    width: 48), // Espace pour équilibrer le bouton retour
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Scan QR Code',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                )
               ],
             ),
           ),
+
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          //   child: Row(
+          //     children: [
+          //       CircleAvatar(
+          //         backgroundColor: Colors.white,
+          //         child: IconButton(
+          //           icon: const Icon(Icons.arrow_back),
+          //           onPressed: () => Navigator.pop(context),
+          //         ),
+          //       ),
+          //       const Expanded(
+          //         child: Center(
+          //           child: Text(
+          //             'Scan QR Code',
+          //             style: TextStyle(
+          //               fontSize: 18,
+          //               fontWeight: FontWeight.bold,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //       const SizedBox(width: 48),
+          //       // Espace pour équilibrer le bouton retour
+          //     ],
+          //   ),
+          // ),
 
           // Conteneur principal
           Expanded(
@@ -105,13 +135,16 @@ class QRCodeBottomSheet extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         Container(
-                          width: 220,
-                          height: 30,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                          // width: 220,
+                          // height: 30,
                           decoration: BoxDecoration(
                             color: Colors.grey[200],
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Icon(Icons.person, size: 18),

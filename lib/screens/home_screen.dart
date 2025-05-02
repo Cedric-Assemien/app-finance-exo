@@ -11,35 +11,36 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100], // Fond gris clair
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Section blanc pour l'en-tête et le solde
-                    _buildHeader(),
-                    const SizedBox(height: 24),
-                    _buildBalanceCard(),
-                    // Sections restantes avec le padding
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 8),
-                          _buildOverviewSection(context),
-                          const SizedBox(height: 24),
-                          _buildSpendingSection(),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 16),
+          child: Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _buildHeader(),
+                  const SizedBox(height: 24),
+                  _buildBalanceCard(),
+                  // Sections restantes avec le padding
+                  // Padding(
+                  //   padding: const EdgeInsets.all(16.0),
+                  //   child:
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 8),
+                      _buildOverviewSection(context),
+                      const SizedBox(height: 24),
+                      _buildSpendingSection(),
+                    ],
+                  ),
+                  // ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -47,9 +48,8 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildHeader() {
     return Container(
-      height: 60,
-      padding: EdgeInsets.only(left: 6, right: 16),
-      margin: EdgeInsets.symmetric(horizontal: 16),
+      // height: 60,
+      padding: EdgeInsets.only(left: 6, right: 16, top: 6, bottom: 6),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -61,8 +61,10 @@ class HomeScreen extends StatelessWidget {
           Row(
             children: [
               Container(
-                height: 150,
-                width: 50,
+                height: 40,
+                width: 40,
+                // height: 150,
+                // width: 50,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
@@ -108,7 +110,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildBalanceCard() {
     return Container(
       padding: const EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(horizontal: 16),
+      // margin: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -309,68 +311,123 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         // Nouveau widget de barre de progression segmentée
-                        Container(
-                          height: 10,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey[700],
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 20,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.grey[300],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 15,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.purpleAccent,
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5))),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 20,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5))),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 25,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.amber,
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5))),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 20,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
+                        LayoutBuilder(builder: (context, constraint) {
+                          return Container(
+                            height: 10,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  right: 0,
+                                  child: Container(
+                                    height: 10,
+                                    width: constraint.maxWidth,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey[700],
                                     ),
-                                    color: Colors.grey[700],
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
+                                Positioned(
+                                  right: (constraint.maxWidth * .2),
+                                  bottom: 0,
+                                  child: Container(
+                                    width: constraint.maxWidth,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.amber,
+                                    ),
+                                  ),
+                                ),
+
+                                Positioned(
+                                  right: (constraint.maxWidth * .4),
+                                  bottom: 0,
+                                  child: Container(
+                                    width: constraint.maxWidth,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                ),
+
+                                Positioned(
+                                  right: (constraint.maxWidth * .6),
+                                  bottom: 0,
+                                  child: Container(
+                                    width: constraint.maxWidth,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.purpleAccent,
+                                    ),
+                                  ),
+                                ),
+
+                                Positioned(
+                                  right: (constraint.maxWidth * .8),
+                                  bottom: 0,
+                                  child: Container(
+                                    width: constraint.maxWidth,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey[300],
+                                    ),
+                                  ),
+                                ),
+
+                                // Expanded(
+                                //   flex: 15,
+                                //   child: Container(
+                                //     decoration: BoxDecoration(
+                                //         color: Colors.purpleAccent,
+                                //         borderRadius: const BorderRadius.only(
+                                //             topRight: Radius.circular(5),
+                                //             bottomRight: Radius.circular(5))),
+                                //   ),
+                                // ),
+                                // Expanded(
+                                //   flex: 20,
+                                //   child: Container(
+                                //     decoration: BoxDecoration(
+                                //         color: Colors.green,
+                                //         borderRadius: const BorderRadius.only(
+                                //             topRight: Radius.circular(5),
+                                //             bottomRight: Radius.circular(5))),
+                                //   ),
+                                // ),
+                                // Expanded(
+                                //   flex: 25,
+                                //   child: Container(
+                                //     decoration: BoxDecoration(
+                                //         color: Colors.amber,
+                                //         borderRadius: const BorderRadius.only(
+                                //             topRight: Radius.circular(5),
+                                //             bottomRight: Radius.circular(5))),
+                                //   ),
+                                // ),
+                                // Expanded(
+                                //   flex: 20,
+                                //   child: Container(
+                                //     decoration: BoxDecoration(
+                                //       borderRadius: const BorderRadius.only(
+                                //         topRight: Radius.circular(10),
+                                //         bottomRight: Radius.circular(10),
+                                //       ),
+                                //       color: Colors.grey[700],
+                                //     ),
+                                //   ),
+                                // ),
+                              ],
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),
@@ -404,38 +461,53 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                         const SizedBox(height: 20),
-                        Container(
-                          margin: EdgeInsets.only(right: 50),
-                          width: 100,
-                          child: Row(
-                            children: [
-                              const CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(Icons.music_note,
-                                      color: Colors.red, size: 25)),
-                              const SizedBox(width: 4),
-                              const CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(Icons.music_note,
-                                      color: Colors.green, size: 25)),
-                              const SizedBox(width: 4),
-                              const CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(Icons.favorite,
-                                      color: Colors.pink, size: 25)),
-                              const SizedBox(width: 4),
-                              const CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.white,
-                                  child: Text('P',
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 10))),
-                            ],
-                          ),
-                        ),
+                        LayoutBuilder(builder: (context, constraint) {
+                          return Container(
+                            margin: EdgeInsets.only(right: 50),
+                            width: constraint.maxWidth,
+                            height: 40,
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  child: const CircleAvatar(
+                                      radius: 20,
+                                      backgroundColor: Colors.white,
+                                      child: Icon(Icons.music_note,
+                                          color: Colors.red, size: 25)),
+                                ),
+                                Positioned(
+                                  left: 30,
+                                  child: const CircleAvatar(
+                                      radius: 20,
+                                      backgroundColor: Colors.white,
+                                      child: Icon(Icons.music_note,
+                                          color: Colors.green, size: 25)),
+                                ),
+                                // const SizedBox(width: 4),
+                                Positioned(
+                                  left: 60,
+                                  child: const CircleAvatar(
+                                      radius: 20,
+                                      backgroundColor: Colors.white,
+                                      child: Icon(Icons.favorite,
+                                          color: Colors.pink, size: 25)),
+                                ),
+                                // const SizedBox(width: 4),
+                                Positioned(
+                                  left: 85,
+                                  child: const CircleAvatar(
+                                      radius: 20,
+                                      backgroundColor: Colors.white,
+                                      child: Text('P',
+                                          style: TextStyle(
+                                              color: Colors.red,
+                                              fontSize: 10))),
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ],

@@ -1,0 +1,28 @@
+{
+  "buildFiles": [
+    "/Users/youssouf/fvm/versions/stable/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/youssouf/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/youssouf/iit-online-2025/app-finance-exo/android/app/.cxx/Debug/5a3x1d5b/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/youssouf/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/youssouf/iit-online-2025/app-finance-exo/android/app/.cxx/Debug/5a3x1d5b/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {},
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/Users/youssouf/Library/Android/sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/Users/youssouf/Library/Android/sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": []
+}

@@ -76,10 +76,12 @@ class _ReportScreenState extends State<ReportScreen> {
             width: 48,
             height: 48,
             decoration: const BoxDecoration(
-              color: Colors.orange,
               shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: AssetImage(
+                'assets/images/cadeau.png',
+              )),
             ),
-            child: const Icon(Icons.trending_up, color: Colors.white),
           ),
           const SizedBox(width: 12),
           Expanded(

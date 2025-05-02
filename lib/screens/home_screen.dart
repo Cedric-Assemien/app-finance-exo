@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildHeader() {
     return Container(
       height: 60,
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.only(left: 6, right: 16),
       margin: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -63,15 +63,19 @@ class HomeScreen extends StatelessWidget {
               Container(
                 height: 150,
                 width: 50,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.grey[300],
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        'assets/images/avatar.png',
+                      )),
                 ),
-                child: const Icon(Icons.person, color: Colors.grey),
               ),
               const SizedBox(width: 12),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Hi, Welcome Back!',
@@ -142,8 +146,11 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () {},
-                  icon:
-                      const Icon(Icons.add_circle_outline, color: Colors.white),
+                  icon: const Icon(
+                    Icons.add_circle,
+                    color: Colors.white,
+                    size: 20,
+                  ),
                   label: const Text('Top Up',
                       style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
@@ -159,7 +166,8 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.swap_horiz, color: Colors.white),
+                  icon: const Icon(Icons.swap_vert_circle_rounded,
+                      size: 20, color: Colors.white),
                   label: const Text('Transfer',
                       style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
@@ -188,8 +196,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildCurrencyDropdown() {
-    return 
-    Container(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -465,8 +472,8 @@ class HomeScreen extends StatelessWidget {
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 leading: CircleAvatar(
-                  backgroundColor: category.iconBgColor,
-                  child: Icon(category.icon, color: Colors.white),
+                  radius: 24,
+                  backgroundImage: AssetImage("assets/images/freepik.png"),
                 ),
                 title: Text(
                   category.name,
